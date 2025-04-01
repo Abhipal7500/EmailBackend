@@ -9,7 +9,7 @@ dotenv.config();
 
 const app = express();
 
-// ✅ Allow multiple origins (local + deployed frontend)
+
 const allowedOrigins = [
   "http://localhost:5173",  // Local development
   "https://emailfrontend-three.vercel.app"  // Deployed frontend
@@ -26,10 +26,9 @@ app.set("trust proxy", 1);
 app.use(express.static("public"));
 app.use(express.json({ limit: "16kb" }));
 
-// ✅ API Routes
+
 app.use("/api/sequence", sequenceRouter);
 
-// ✅ Serve Frontend (Only in Production)
 const __dirname = path.resolve();
 
 if (process.env.NODE_ENV === "production") {
@@ -40,5 +39,4 @@ if (process.env.NODE_ENV === "production") {
   });
 }
 
-// ✅ Export App
 export { app };
